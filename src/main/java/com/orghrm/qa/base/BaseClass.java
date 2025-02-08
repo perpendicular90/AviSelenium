@@ -11,8 +11,8 @@ import java.util.*;
 
 public class BaseClass {
 
-    static WebDriver driver;
-    static Properties prop;
+   public static WebDriver driver;
+    public static Properties prop;
 
 
     public BaseClass() throws FileNotFoundException {
@@ -28,7 +28,7 @@ public class BaseClass {
 
     public static void initialization() {
 
-        String browserName = prop.getProperty("browser");
+        String browserName = prop.getProperty("Browser");
         if (browserName.equals("chrome")) {
             System.getProperty("webDriver.chrome.driver", "C:\\Users\\rahul\\Downloads\\chromedriver-win64");
             driver = new ChromeDriver();
@@ -36,8 +36,10 @@ public class BaseClass {
         }
         driver.manage().window().maximize();
         driver.manage().deleteAllCookies();
-        driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(10));
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(20));
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
+
+        driver.get(prop.getProperty("url"));
 
     }
 }
